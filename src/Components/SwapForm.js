@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import styled from "styled-components";
-
+import { useHistory } from "react-router-dom";
 import * as yup from "yup";
 
 const formSchema = yup.object().shape({
@@ -18,7 +18,18 @@ const formSchema = yup.object().shape({
     notes: yup.string().notRequired("please enter any notes, VINs, etc."),
     isActive: yup.bool().oneOf([true], "please check the box"),
 });
-
+const initialTicket = {
+    salesperson: "",
+    year: "",
+    model: "",
+    body: "",
+    pep: "",
+    ext: "",
+    int: "",
+    options: "",
+    notes: "",
+    isActive: false,
+};
 const StyledInput = styled.input`
     margin-left: 1%;
     min-height: 8vh;
@@ -48,6 +59,7 @@ const StyledTextArea = styled.textarea`
 `;
 
 const SwapForm = () => {
+    const { push } = useHistory();
     const [ticket, setTicket] = useState([]);
     const [drivers, setDrivers] = useState([]);
     const [formState, setFormState] = useState({
@@ -131,6 +143,7 @@ const SwapForm = () => {
                 formState
             )
             .then((response) => {
+                console.log(response);
                 setTicket(response.data);
                 setFormState({
                     salesperson: "",
@@ -142,10 +155,9 @@ const SwapForm = () => {
                     int: "",
                     options: "",
                     notes: "",
-                    isActive: false,
+                    isActive: "",
                 });
-                document.location.reload(true);
-                alert("Swap submitted. Back to work");
+                push("/");
             })
             .catch((err) => {
                 console.log(err.response);
@@ -159,12 +171,12 @@ const SwapForm = () => {
                 driverFormState
             )
             .then((response) => {
+                console.log(response);
                 setDrivers(response.data);
                 setDriverFormState({
                     salesperson: "",
                     description: "",
                 });
-                document.location.reload(true);
             })
             .catch((err) => {
                 console.log(err.response);

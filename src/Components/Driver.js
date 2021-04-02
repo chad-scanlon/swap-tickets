@@ -1,16 +1,30 @@
 import { useState } from "react";
-import axios from "axios";
+import axiosWithAuth from "../utils/axiosWithAuth";
 
 const Driver = (props) => {
     const [driver, setDriver] = useState([]);
-
+    const [formState, setFormState] = useState({
+        description: "",
+    });
     console.log(props);
+    const handleArchive = (ticket) => {
+        axiosWithAuth()
+            .put(`/drivers/${props.id}`, formState)
+            .then((res) => {
+                setDriver(res.data);
+                document.location.reload(true);
+                setFormState({
+                    description: "",
+                });
+            })
+            .catch((err) => {
+                console.log(err.response);
+            });
+    };
 
     const handleDelete = (driver) => {
-        axios
-            .delete(
-                `https://swap-tickets.herokuapp.com/api/drivers/${props.id}`
-            )
+        axiosWithAuth
+            .delete(`/drivers/${props.id}`)
             .then((res) => {
                 setDriver(res.data);
                 document.location.reload(true);
@@ -19,26 +33,31 @@ const Driver = (props) => {
                 console.log(err.res);
             });
     };
-    return (
-        <>
-            <div className="ticket-container">
-                <div className="main-ticket">
-                    <p>Salesperson: {props.salesperson}</p>
-                    <p>Description: {props.description}</p>
+    if (props.description.length <= 0) {
+        return null;
+    } else {
+        return (
+            <>
+                <div className="ticket-container">
+                    <div className="main-ticket">
+                        <p>Salesperson: {props.salesperson}</p>
+                        <p>Description: {props.description}</p>
 
-                    <button
-                        className="button"
-                        onClick={(e) => {
-                            e.stopPropagation();
-                            handleDelete(driver);
-                        }}
-                    >
-                        Done
-                    </button>
+                        <button
+                            className="button"
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                handleArchive(driver);
+                                console.log(props.description);
+                            }}
+                        >
+                            Archive
+                        </button>
+                    </div>
                 </div>
-            </div>
-        </>
-    );
+            </>
+        );
+    }
 };
 
 export default Driver;

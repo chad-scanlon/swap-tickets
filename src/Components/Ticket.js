@@ -1,20 +1,9 @@
 import { useState } from "react";
 import axiosWithAuth from "../utils/axiosWithAuth";
+import { useHistory } from "react-router-dom";
 
-// const initialTicket = {
-//     id: "",
-//     salesperson: "",
-//     year: "",
-//     model: "",
-//     body: "",
-//     pep: "",
-//     ext: "",
-//     int: "",
-//     options: "",
-//     notes: "",
-//     isActive: true,
-// };
 const Ticket = (props) => {
+    const { push } = useHistory();
     const [ticket, setTicket] = useState([]);
     const [formState, setFormState] = useState({
         isActive: false,
@@ -23,16 +12,6 @@ const Ticket = (props) => {
     const handleBackGroundChange = () => {
         setBackGroundGreen(true);
     };
-
-    // const handleChange = (event) => {
-    //     event.persist();
-    //     const newFormData = {
-    //         ...formState,
-    //         [event.target.name]: event.target.value,
-    //     };
-
-    //     setFormState(newFormData);
-    // };
 
     const handleArchive = (ticket) => {
         axiosWithAuth()
@@ -48,17 +27,18 @@ const Ticket = (props) => {
                 console.log(err.response);
             });
     };
-    const handleDelete = (ticket) => {
-        axiosWithAuth()
-            .delete(`/tickets/${props.id}`)
-            .then((res) => {
-                setTicket(res.data);
-                document.location.reload(true);
-            })
-            .catch((err) => {
-                console.log(err.res);
-            });
-    };
+    // const handleDelete = (ticket) => {
+    //     axiosWithAuth()
+    //         .delete(`/tickets/${props.id}`)
+    //         .then((res) => {
+    //             setTicket(res.data);
+    //             // document.location.reload(true);
+    //             push("/");
+    //         })
+    //         .catch((err) => {
+    //             console.log(err.res);
+    //         });
+    // };
 
     if (props.isActive !== true) {
         return null;
@@ -77,7 +57,7 @@ const Ticket = (props) => {
                             <p>Interior Color: {props.int}</p>
                             <p>Options: {props.options}</p>
                             <p>Notes: {props.notes}</p>
-                            <button
+                            {/* <button
                                 className="button"
                                 onClick={(e) => {
                                     e.stopPropagation();
@@ -85,7 +65,7 @@ const Ticket = (props) => {
                                 }}
                             >
                                 Delete
-                            </button>
+                            </button> */}
 
                             <button
                                 className="button"
@@ -115,7 +95,7 @@ const Ticket = (props) => {
                             <p>Interior Color: {props.int}</p>
                             <p>Options: {props.options}</p>
                             <p>Notes: {props.notes}</p>
-                            <button
+                            {/* <button
                                 className="button"
                                 onClick={(e) => {
                                     e.stopPropagation();
@@ -123,7 +103,7 @@ const Ticket = (props) => {
                                 }}
                             >
                                 Delete
-                            </button>
+                            </button> */}
 
                             <button
                                 className="button"

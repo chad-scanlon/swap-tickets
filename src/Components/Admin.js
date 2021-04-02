@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Ticket from "./Ticket";
 import Driver from "./Driver";
-import SwapForm from "./SwapForm";
+// import SwapForm from "./SwapForm";
 import axiosWithAuth from "../utils/axiosWithAuth";
 
 const Admin = () => {
@@ -55,7 +55,7 @@ const Admin = () => {
                     ></Driver>
                 ))}
             </div>
-            <SwapForm />
+            {/* <SwapForm /> */}
         </>
     );
 };
