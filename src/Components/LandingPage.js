@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
-// import Register from "./Register";
-// import AdminLogin from "./AdminLogin";
+
 import raptor from "../assets/raptor.jpeg";
 
 const LandingPage = () => {

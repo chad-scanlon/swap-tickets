@@ -59,94 +59,93 @@ const Ticket = (props) => {
                 console.log(err.res);
             });
     };
-    {
-        if (props.isActive !== true) {
-            return null;
-        } else {
-            return (
-                <>
-                    <div className="ticket-container">
-                        {backGroundGreen === false ? (
-                            <div className="main-ticket">
-                                <p>Salesperson:{props.salesperson}</p>
-                                <p>Year: {props.year}</p>
-                                <p>Model: {props.model}</p>
-                                <p>Body: {props.body}</p>
-                                <p>PEP: {props.pep}</p>
-                                <p>Exterior Color: {props.ext}</p>
-                                <p>Interior Color: {props.int}</p>
-                                <p>Options: {props.options}</p>
-                                <p>Notes: {props.notes}</p>
-                                <button
-                                    className="button"
-                                    onClick={(e) => {
-                                        e.stopPropagation();
-                                        handleDelete(ticket);
-                                    }}
-                                >
-                                    Delete
-                                </button>
 
-                                <button
-                                    className="button"
-                                    onClick={(e) => {
-                                        e.stopPropagation();
-                                        handleArchive(ticket);
-                                        console.log(`${props.isActive}`);
-                                    }}
-                                >
-                                    Archive
-                                </button>
-                                <button
-                                    className="button"
-                                    onClick={handleBackGroundChange}
-                                >
-                                    Locked In
-                                </button>
-                            </div>
-                        ) : (
-                            <div className="locked-ticket">
-                                <p>Salesperson:{props.salesperson}</p>
-                                <p>Year: {props.year}</p>
-                                <p>Model: {props.model}</p>
-                                <p>Body: {props.body}</p>
-                                <p>PEP: {props.pep}</p>
-                                <p>Exterior Color: {props.ext}</p>
-                                <p>Interior Color: {props.int}</p>
-                                <p>Options: {props.options}</p>
-                                <p>Notes: {props.notes}</p>
-                                <button
-                                    className="button"
-                                    onClick={(e) => {
-                                        e.stopPropagation();
-                                        handleDelete(ticket);
-                                    }}
-                                >
-                                    Delete
-                                </button>
+    if (props.isActive !== true) {
+        return null;
+    } else {
+        return (
+            <>
+                <div className="ticket-container">
+                    {backGroundGreen === false ? (
+                        <div className="main-ticket">
+                            <p>Salesperson:{props.salesperson}</p>
+                            <p>Year: {props.year}</p>
+                            <p>Model: {props.model}</p>
+                            <p>Body: {props.body}</p>
+                            <p>PEP: {props.pep}</p>
+                            <p>Exterior Color: {props.ext}</p>
+                            <p>Interior Color: {props.int}</p>
+                            <p>Options: {props.options}</p>
+                            <p>Notes: {props.notes}</p>
+                            <button
+                                className="button"
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    handleDelete(ticket);
+                                }}
+                            >
+                                Delete
+                            </button>
 
-                                <button
-                                    className="button"
-                                    onClick={(e) => {
-                                        e.stopPropagation();
-                                        handleArchive(ticket);
-                                        console.log(`${props.isActive}`);
-                                    }}
-                                >
-                                    Archive
-                                </button>
-                                <button
-                                    className="button"
-                                    onClick={handleBackGroundChange}
-                                >
-                                    Locked In
-                                </button>
-                            </div>
-                        )}
-                    </div>
-                </>
-            );
-        }
+                            <button
+                                className="button"
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    handleArchive(ticket);
+                                    console.log(`${props.isActive}`);
+                                }}
+                            >
+                                Archive
+                            </button>
+                            <button
+                                className="button"
+                                onClick={handleBackGroundChange}
+                            >
+                                Locked In
+                            </button>
+                        </div>
+                    ) : (
+                        <div className="locked-ticket">
+                            <p>Salesperson:{props.salesperson}</p>
+                            <p>Year: {props.year}</p>
+                            <p>Model: {props.model}</p>
+                            <p>Body: {props.body}</p>
+                            <p>PEP: {props.pep}</p>
+                            <p>Exterior Color: {props.ext}</p>
+                            <p>Interior Color: {props.int}</p>
+                            <p>Options: {props.options}</p>
+                            <p>Notes: {props.notes}</p>
+                            <button
+                                className="button"
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    handleDelete(ticket);
+                                }}
+                            >
+                                Delete
+                            </button>
+
+                            <button
+                                className="button"
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    handleArchive(ticket);
+                                    console.log(`${props.isActive}`);
+                                }}
+                            >
+                                Archive
+                            </button>
+                            <button
+                                className="button"
+                                onClick={handleBackGroundChange}
+                            >
+                                Locked In
+                            </button>
+                        </div>
+                    )}
+                </div>
+            </>
+        );
     }
 };
 

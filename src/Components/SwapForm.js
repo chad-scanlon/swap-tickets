@@ -22,7 +22,7 @@ const formSchema = yup.object().shape({
 const StyledInput = styled.input`
     margin-left: 1%;
     min-height: 8vh;
-    min-width: 20vw;
+    min-width: 21vw;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -37,7 +37,7 @@ const StyledTextArea = styled.textarea`
     margin-top: 1%;
     margin-left: 1%;
     min-height: 50vh;
-    min-width: 20vw;
+    min-width: 22vw;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -179,7 +179,8 @@ const SwapForm = () => {
                     display: "grid",
                     gridTemplateColumns: "repeat(2, 2fr)",
                     gridColumnGap: "15%",
-                    // backgroundColor: "rgb(223, 48, 48)",
+                    backgroundColor: "rgb(223, 48, 48)",
+                    marginTop: "3%",
                 }}
             >
                 <form className="ticket-form" onSubmit={handleLocateSubmit}>

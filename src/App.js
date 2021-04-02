@@ -4,8 +4,6 @@ import LandingPage from "./Components/LandingPage";
 import SwapForm from "./Components/SwapForm";
 import Admin from "./Components/Admin";
 import AdminLogin from "./Components/AdminLogin";
-import NewAdminLogin from "./Components/NewAdminLogin";
-import NewSwapForm from "./Components/NewSwapForm";
 
 function App() {
     return (
