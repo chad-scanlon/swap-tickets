@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axiosWithAuth from "../utils/axiosWithAuth";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
+import Tickets from "./Tickets";
 
 const StyledInput = styled.input`
     margin-top: 3%;
@@ -32,9 +33,8 @@ const AdminLogin = () => {
         axiosWithAuth()
             .post("/users/login", cred)
             .then((res) => {
-                console.log("admin login page data: ", res);
                 localStorage.setItem("token", res.data.payload);
-                push("/admin");
+                push("/admin-tickets");
             })
             .catch((err) => console.log("this is the error from login: ", err));
     };

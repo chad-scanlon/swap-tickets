@@ -1,10 +1,40 @@
-import { useState } from "react";
+import { useState, useContext, useEffect } from "react";
 import axiosWithAuth from "../utils/axiosWithAuth";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link, useParams } from "react-router-dom";
+import ManageTicket from "../purgable/ManageTicket";
+import TicketManager from "../purgable/TicketManager";
+import { InitialContext } from "../context/InitialContext";
+import axios from "axios";
+const initialTicket = {
+    salesperson: "",
+    year: "",
+    model: "",
+    body: "",
+    pep: "",
+    ext: "",
+    int: "",
+    options: "",
+    notes: "",
+    isActive: false,
+};
 
-const Ticket = (props) => {
+const Ticket = ({
+    id,
+    salesperson,
+    year,
+    model,
+    body,
+    pep,
+    ext,
+    int,
+    options,
+    notes,
+    isActive,
+    setTickets,
+}) => {
     const { push } = useHistory();
-    const [ticket, setTicket] = useState([]);
+    const [ticket, setTicket] = useState();
+
     const [formState, setFormState] = useState({
         isActive: false,
     });
@@ -13,15 +43,21 @@ const Ticket = (props) => {
         setBackGroundGreen(true);
     };
 
-    const handleArchive = (ticket) => {
+    const handleArchive = (e) => {
         axiosWithAuth()
-            .put(`/tickets/${props.id}`, formState)
+            .put(`/tickets/${id}`, formState)
             .then((res) => {
-                setTicket(res.data);
-                document.location.reload(true);
                 setFormState({
                     isActive: false,
                 });
+            })
+            .catch((err) => {
+                console.log(err.response);
+            });
+        axiosWithAuth()
+            .get("/tickets")
+            .then((res) => {
+                setTickets(res.data);
             })
             .catch((err) => {
                 console.log(err.response);
@@ -39,8 +75,10 @@ const Ticket = (props) => {
     //             console.log(err.res);
     //         });
     // };
-
-    if (props.isActive !== true) {
+    //
+    //
+    //
+    if (isActive !== true) {
         return null;
     } else {
         return (
@@ -48,15 +86,15 @@ const Ticket = (props) => {
                 <div className="ticket-container">
                     {backGroundGreen === false ? (
                         <div className="main-ticket">
-                            <p>Salesperson:{props.salesperson}</p>
-                            <p>Year: {props.year}</p>
-                            <p>Model: {props.model}</p>
-                            <p>Body: {props.body}</p>
-                            <p>PEP: {props.pep}</p>
-                            <p>Exterior Color: {props.ext}</p>
-                            <p>Interior Color: {props.int}</p>
-                            <p>Options: {props.options}</p>
-                            <p>Notes: {props.notes}</p>
+                            <p>Salesperson:{salesperson}</p>
+                            <p>Year: {year}</p>
+                            <p>Model: {model}</p>
+                            <p>Body: {body}</p>
+                            <p>PEP: {pep}</p>
+                            <p>Exterior Color: {ext}</p>
+                            <p>Interior Color: {int}</p>
+                            <p>Options: {options}</p>
+                            <p>Notes: {notes}</p>
                             {/* <button
                                 className="button"
                                 onClick={(e) => {
@@ -70,9 +108,8 @@ const Ticket = (props) => {
                             <button
                                 className="button"
                                 onClick={(e) => {
-                                    e.stopPropagation();
-                                    handleArchive(ticket);
-                                    console.log(`${props.isActive}`);
+                                    // e.stopPropagation();
+                                    handleArchive(e);
                                 }}
                             >
                                 Archive
@@ -86,15 +123,15 @@ const Ticket = (props) => {
                         </div>
                     ) : (
                         <div className="locked-ticket">
-                            <p>Salesperson:{props.salesperson}</p>
-                            <p>Year: {props.year}</p>
-                            <p>Model: {props.model}</p>
-                            <p>Body: {props.body}</p>
-                            <p>PEP: {props.pep}</p>
-                            <p>Exterior Color: {props.ext}</p>
-                            <p>Interior Color: {props.int}</p>
-                            <p>Options: {props.options}</p>
-                            <p>Notes: {props.notes}</p>
+                            <p>Salesperson:{salesperson}</p>
+                            <p>Year: {year}</p>
+                            <p>Model: {model}</p>
+                            <p>Body: {body}</p>
+                            <p>PEP: {pep}</p>
+                            <p>Exterior Color: {ext}</p>
+                            <p>Interior Color: {int}</p>
+                            <p>Options: {options}</p>
+                            <p>Notes: {notes}</p>
                             {/* <button
                                 className="button"
                                 onClick={(e) => {
@@ -108,9 +145,7 @@ const Ticket = (props) => {
                             <button
                                 className="button"
                                 onClick={(e) => {
-                                    e.stopPropagation();
-                                    handleArchive(ticket);
-                                    console.log(`${props.isActive}`);
+                                    setFormState({ isActive: false });
                                 }}
                             >
                                 Archive
@@ -127,6 +162,22 @@ const Ticket = (props) => {
             </>
         );
     }
+    // return (
+    //     <div className="main-ticket">
+    //         <p>
+    //             {props.salesperson} needs a {props.model}
+    //         </p>
+    //         <p>Salesperson:{props.salesperson}</p>
+    //         <p>Year: {props.year}</p>
+    //         <p>Model: {props.model}</p>
+    //         <p>Body: {props.body}</p>
+    //         <p>PEP: {props.pep}</p>
+    //         <p>Exterior Color: {props.ext}</p>
+    //         <p>Interior Color: {props.int}</p>
+    //         <p>Options: {props.options}</p>
+    //         <p>Notes: {props.notes}</p>
+    //     </div>
+    // );
 };
 
 export default Ticket;
