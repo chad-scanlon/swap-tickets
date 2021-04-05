@@ -4,8 +4,6 @@ import Driver from "./Driver";
 import axiosWithAuth from "../utils/axiosWithAuth";
 import { InitialContext } from "../context/InitialContext";
 import { Link } from "react-router-dom";
-import ManageTicket from "../purgable/ManageTicket";
-import TicketManager from "../purgable/TicketManager";
 
 const Tickets = (props) => {
     const { tickets, setTickets } = useContext(InitialContext);

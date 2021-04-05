@@ -1,10 +1,8 @@
 import { useState, useContext, useEffect } from "react";
 import axiosWithAuth from "../utils/axiosWithAuth";
 import { useHistory, Link, useParams } from "react-router-dom";
-import ManageTicket from "../purgable/ManageTicket";
-import TicketManager from "../purgable/TicketManager";
 import { InitialContext } from "../context/InitialContext";
-import axios from "axios";
+
 const initialTicket = {
     salesperson: "",
     year: "",
@@ -162,22 +160,6 @@ const Ticket = ({
             </>
         );
     }
-    // return (
-    //     <div className="main-ticket">
-    //         <p>
-    //             {props.salesperson} needs a {props.model}
-    //         </p>
-    //         <p>Salesperson:{props.salesperson}</p>
-    //         <p>Year: {props.year}</p>
-    //         <p>Model: {props.model}</p>
-    //         <p>Body: {props.body}</p>
-    //         <p>PEP: {props.pep}</p>
-    //         <p>Exterior Color: {props.ext}</p>
-    //         <p>Interior Color: {props.int}</p>
-    //         <p>Options: {props.options}</p>
-    //         <p>Notes: {props.notes}</p>
-    //     </div>
-    // );
 };
 
 export default Ticket;
