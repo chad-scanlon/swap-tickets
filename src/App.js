@@ -4,6 +4,7 @@ import LandingPage from "./Components/LandingPage";
 import SwapForm from "./Components/SwapForm";
 import Admin from "./Components/Admin";
 import AdminLogin from "./Components/AdminLogin";
+import Success from "./Components/Success";
 
 function App() {
     return (
@@ -38,6 +39,9 @@ function App() {
                     </Route>
                     <Route exact path="/admin">
                         <Admin />
+                    </Route>
+                    <Route exact path="/success">
+                        <Success />
                     </Route>
                 </div>
             </Router>

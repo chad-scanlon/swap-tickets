@@ -235,3 +235,10 @@
     -moz-box-shadow: 20px 0px 25px 5px #295d92;
     box-shadow: 22px 0px 35px 0px rgba(0, 0, 0, 0.5);
 }
+.success-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3%;
+}

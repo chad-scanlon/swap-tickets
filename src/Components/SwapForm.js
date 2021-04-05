@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import styled from "styled-components";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import * as yup from "yup";
 
 const formSchema = yup.object().shape({
@@ -59,6 +59,8 @@ const StyledTextArea = styled.textarea`
 `;
 
 const SwapForm = () => {
+    const token = localStorage.getItem("token");
+    console.log(token);
     const { push } = useHistory();
     const [ticket, setTicket] = useState([]);
     const [drivers, setDrivers] = useState([]);
@@ -157,7 +159,7 @@ const SwapForm = () => {
                     notes: "",
                     isActive: "",
                 });
-                push("/");
+                push("/success");
             })
             .catch((err) => {
                 console.log(err.response);
@@ -177,6 +179,7 @@ const SwapForm = () => {
                     salesperson: "",
                     description: "",
                 });
+                push("/success");
             })
             .catch((err) => {
                 console.log(err.response);
@@ -318,9 +321,11 @@ const SwapForm = () => {
                             onChange={handleChange}
                         />
                     </label>
-                    <button disabled={buttonDisabled} className="button">
-                        Submit
-                    </button>
+                    <Link to="/success">
+                        <button disabled={buttonDisabled} className="button">
+                            Submit
+                        </button>
+                    </Link>
                 </form>
 
                 <form className="ticket-form" onSubmit={handleDriverSubmit}>
@@ -349,8 +354,9 @@ const SwapForm = () => {
                             onChange={handleDriverChange}
                         />
                     </label>
-
-                    <button className="button">Submit</button>
+                    <Link to="/success">
+                        <button className="button">Submit</button>
+                    </Link>
                 </form>
             </div>
         </>
