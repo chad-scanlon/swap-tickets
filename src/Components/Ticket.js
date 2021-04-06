@@ -3,19 +3,6 @@ import axiosWithAuth from "../utils/axiosWithAuth";
 import { useHistory, Link, useParams } from "react-router-dom";
 import { InitialContext } from "../context/InitialContext";
 
-const initialTicket = {
-    salesperson: "",
-    year: "",
-    model: "",
-    body: "",
-    pep: "",
-    ext: "",
-    int: "",
-    options: "",
-    notes: "",
-    isActive: false,
-};
-
 const Ticket = ({
     id,
     salesperson,
@@ -106,7 +93,6 @@ const Ticket = ({
                             <button
                                 className="button"
                                 onClick={(e) => {
-                                    // e.stopPropagation();
                                     handleArchive(e);
                                 }}
                             >

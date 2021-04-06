@@ -18,18 +18,7 @@ const formSchema = yup.object().shape({
     notes: yup.string().notRequired("please enter any notes, VINs, etc."),
     isActive: yup.bool().oneOf([true], "please check the box"),
 });
-const initialTicket = {
-    salesperson: "",
-    year: "",
-    model: "",
-    body: "",
-    pep: "",
-    ext: "",
-    int: "",
-    options: "",
-    notes: "",
-    isActive: false,
-};
+
 const StyledInput = styled.input`
     margin-left: 1%;
     min-height: 8vh;
@@ -60,7 +49,7 @@ const StyledTextArea = styled.textarea`
 
 const SwapForm = () => {
     const token = localStorage.getItem("token");
-    console.log(token);
+
     const { push } = useHistory();
     const [ticket, setTicket] = useState([]);
     const [drivers, setDrivers] = useState([]);
@@ -145,7 +134,6 @@ const SwapForm = () => {
                 formState
             )
             .then((response) => {
-                console.log(response);
                 setTicket(response.data);
                 setFormState({
                     salesperson: "",

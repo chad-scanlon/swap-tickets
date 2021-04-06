@@ -6,7 +6,6 @@ const Driver = (props) => {
     const [formState, setFormState] = useState({
         description: "",
     });
-    console.log(props);
     const handleArchive = (ticket) => {
         axiosWithAuth()
             .put(`/drivers/${props.id}`, formState)

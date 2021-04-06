@@ -18,8 +18,6 @@ function App() {
         axiosWithAuth()
             .get("/tickets")
             .then((res) => {
-                // console.log(res);
-                // console.log(localStorage.getItem("token"));
                 setTickets(res.data);
             });
     }, []);

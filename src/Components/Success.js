@@ -1,7 +1,6 @@
 import React from "react";
 import thumbsUp from "../assets/Office-Heyyy-Thumbs-Up.gif";
 const Success = (props) => {
-    console.log(props);
     return (
         <>
             <div className="success-page">
