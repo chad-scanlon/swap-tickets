@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import styled from "styled-components";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import * as yup from "yup";
 
 const formSchema = yup.object().shape({
@@ -309,11 +309,10 @@ const SwapForm = () => {
                             onChange={handleChange}
                         />
                     </label>
-                    {/* <Link to="/success"> */}
+
                     <button disabled={buttonDisabled} className="button">
                         Submit
                     </button>
-                    {/* </Link> */}
                 </form>
 
                 <form className="ticket-form" onSubmit={handleDriverSubmit}>
@@ -342,9 +341,8 @@ const SwapForm = () => {
                             onChange={handleDriverChange}
                         />
                     </label>
-                    <Link to="/success">
-                        <button className="button">Submit</button>
-                    </Link>
+
+                    <button className="button">Submit</button>
                 </form>
             </div>
         </>
