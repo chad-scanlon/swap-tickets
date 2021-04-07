@@ -167,7 +167,7 @@ const SwapForm = () => {
                     salesperson: "",
                     description: "",
                 });
-                push("/success");
+                // push("/success");
             })
             .catch((err) => {
                 console.log(err.response);
@@ -309,11 +309,11 @@ const SwapForm = () => {
                             onChange={handleChange}
                         />
                     </label>
-                    <Link to="/success">
-                        <button disabled={buttonDisabled} className="button">
-                            Submit
-                        </button>
-                    </Link>
+                    {/* <Link to="/success"> */}
+                    <button disabled={buttonDisabled} className="button">
+                        Submit
+                    </button>
+                    {/* </Link> */}
                 </form>
 
                 <form className="ticket-form" onSubmit={handleDriverSubmit}>

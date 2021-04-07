@@ -5,8 +5,6 @@ const Success = (props) => {
         <>
             <div className="success-page">
                 <div className="success-box">
-                    <span>Thanks for playing!</span>
-                    <span>Back to work</span>
                     <img alt="tumbs up" id="hero" src={thumbsUp} />
                 </div>
             </div>
