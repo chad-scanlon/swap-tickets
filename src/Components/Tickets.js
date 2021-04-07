@@ -7,7 +7,8 @@ import { Link } from "react-router-dom";
 
 const Tickets = (props) => {
     const { tickets, setTickets } = useContext(InitialContext);
-
+    console.log(props);
+    console.log(tickets);
     return (
         <>
             <h1 className="ticket-header">Locates</h1>
