@@ -63,24 +63,24 @@ const Ticket = ({
     //
     //
     //
-    if (isActive !== true) {
-        return null;
-    } else {
-        return (
-            <>
-                <div className="ticket-container">
-                    {backGroundGreen === false ? (
-                        <div className="main-ticket">
-                            <p>Salesperson:{salesperson}</p>
-                            <p>Year: {year}</p>
-                            <p>Model: {model}</p>
-                            <p>Body: {body}</p>
-                            <p>PEP: {pep}</p>
-                            <p>Exterior Color: {ext}</p>
-                            <p>Interior Color: {int}</p>
-                            <p>Options: {options}</p>
-                            <p>Notes: {notes}</p>
-                            {/* <button
+    // if (isActive !== true) {
+    //     return null;
+    // } else {
+    return (
+        <>
+            <div className="ticket-container">
+                {backGroundGreen === false ? (
+                    <div className="main-ticket">
+                        <p>Salesperson:{salesperson}</p>
+                        <p>Year: {year}</p>
+                        <p>Model: {model}</p>
+                        <p>Body: {body}</p>
+                        <p>PEP: {pep}</p>
+                        <p>Exterior Color: {ext}</p>
+                        <p>Interior Color: {int}</p>
+                        <p>Options: {options}</p>
+                        <p>Notes: {notes}</p>
+                        {/* <button
                                 className="button"
                                 onClick={(e) => {
                                     e.stopPropagation();
@@ -90,33 +90,33 @@ const Ticket = ({
                                 Delete
                             </button> */}
 
-                            <button
-                                className="button"
-                                onClick={(e) => {
-                                    handleArchive(e);
-                                }}
-                            >
-                                Archive
-                            </button>
-                            <button
-                                className="button"
-                                onClick={handleBackGroundChange}
-                            >
-                                Locked In
-                            </button>
-                        </div>
-                    ) : (
-                        <div className="locked-ticket">
-                            <p>Salesperson:{salesperson}</p>
-                            <p>Year: {year}</p>
-                            <p>Model: {model}</p>
-                            <p>Body: {body}</p>
-                            <p>PEP: {pep}</p>
-                            <p>Exterior Color: {ext}</p>
-                            <p>Interior Color: {int}</p>
-                            <p>Options: {options}</p>
-                            <p>Notes: {notes}</p>
-                            {/* <button
+                        <button
+                            className="button"
+                            onClick={(e) => {
+                                handleArchive(e);
+                            }}
+                        >
+                            Archive
+                        </button>
+                        <button
+                            className="button"
+                            onClick={handleBackGroundChange}
+                        >
+                            Locked In
+                        </button>
+                    </div>
+                ) : (
+                    <div className="locked-ticket">
+                        <p>Salesperson:{salesperson}</p>
+                        <p>Year: {year}</p>
+                        <p>Model: {model}</p>
+                        <p>Body: {body}</p>
+                        <p>PEP: {pep}</p>
+                        <p>Exterior Color: {ext}</p>
+                        <p>Interior Color: {int}</p>
+                        <p>Options: {options}</p>
+                        <p>Notes: {notes}</p>
+                        {/* <button
                                 className="button"
                                 onClick={(e) => {
                                     e.stopPropagation();
@@ -126,26 +126,26 @@ const Ticket = ({
                                 Delete
                             </button> */}
 
-                            <button
-                                className="button"
-                                onClick={(e) => {
-                                    setFormState({ isActive: false });
-                                }}
-                            >
-                                Archive
-                            </button>
-                            <button
-                                className="button"
-                                onClick={handleBackGroundChange}
-                            >
-                                Locked In
-                            </button>
-                        </div>
-                    )}
-                </div>
-            </>
-        );
-    }
+                        <button
+                            className="button"
+                            onClick={(e) => {
+                                setFormState({ isActive: false });
+                            }}
+                        >
+                            Archive
+                        </button>
+                        <button
+                            className="button"
+                            onClick={handleBackGroundChange}
+                        >
+                            Locked In
+                        </button>
+                    </div>
+                )}
+            </div>
+        </>
+    );
 };
+// };
 
 export default Ticket;

@@ -14,11 +14,28 @@ import axiosWithAuth from "./utils/axiosWithAuth";
 function App() {
     const [tickets, setTickets] = useState([]);
     const [drivers, setDrivers] = useState([]);
+
+    // useEffect(() => {
+    //     let tempArr = [];
+    //     axiosWithAuth()
+    //         .get("/tickets")
+    //         .then((res) => {
+    //             console.log(res);
+    //             setTickets(res.data);
+    //         });
+    // }, []);
     useEffect(() => {
         axiosWithAuth()
             .get("/tickets")
-            .then((res) => {
-                setTickets(res.data);
+            .then((response) => {
+                let actives = [];
+                response.data.forEach((res) => {
+                    if (res.isActive === true) {
+                        actives.push(res);
+                    }
+                });
+                setTickets(actives);
+                console.log(actives);
             });
     }, []);
     return (
