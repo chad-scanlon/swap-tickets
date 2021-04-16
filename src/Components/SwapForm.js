@@ -161,7 +161,6 @@ const SwapForm = () => {
                 driverFormState
             )
             .then((response) => {
-                console.log(response);
                 setDrivers(response.data);
                 setDriverFormState({
                     salesperson: "",

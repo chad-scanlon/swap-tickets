@@ -48,24 +48,7 @@ const Ticket = ({
                 console.log(err.response);
             });
     };
-    // const handleDelete = (ticket) => {
-    //     axiosWithAuth()
-    //         .delete(`/tickets/${props.id}`)
-    //         .then((res) => {
-    //             setTicket(res.data);
-    //             // document.location.reload(true);
-    //             push("/");
-    //         })
-    //         .catch((err) => {
-    //             console.log(err.res);
-    //         });
-    // };
-    //
-    //
-    //
-    // if (isActive !== true) {
-    //     return null;
-    // } else {
+
     return (
         <>
             <div className="ticket-container">
@@ -80,15 +63,6 @@ const Ticket = ({
                         <p>Interior Color: {int}</p>
                         <p>Options: {options}</p>
                         <p>Notes: {notes}</p>
-                        {/* <button
-                                className="button"
-                                onClick={(e) => {
-                                    e.stopPropagation();
-                                    handleDelete(ticket);
-                                }}
-                            >
-                                Delete
-                            </button> */}
 
                         <button
                             className="button"
@@ -116,15 +90,6 @@ const Ticket = ({
                         <p>Interior Color: {int}</p>
                         <p>Options: {options}</p>
                         <p>Notes: {notes}</p>
-                        {/* <button
-                                className="button"
-                                onClick={(e) => {
-                                    e.stopPropagation();
-                                    handleDelete(ticket);
-                                }}
-                            >
-                                Delete
-                            </button> */}
 
                         <button
                             className="button"
@@ -146,6 +111,5 @@ const Ticket = ({
         </>
     );
 };
-// };
 
 export default Ticket;
