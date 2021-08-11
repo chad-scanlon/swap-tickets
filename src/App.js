@@ -8,12 +8,68 @@ import Tickets from "./Components/Tickets";
 import Ticket from "./Components/Tickets";
 import AdminLogin from "./Components/AdminLogin";
 
+import { makeStyles } from "@material-ui/core/styles";
+import { useTheme } from "@material-ui/core/styles";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
+import Button from "@material-ui/core/Button";
+import Container from "@material-ui/core/Container";
+
 import { InitialContext } from "./context/InitialContext";
 import axiosWithAuth from "./utils/axiosWithAuth";
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+        width: "100%",
+    },
+    button: {
+        marginTop: theme.spacing(1),
+        marginRight: theme.spacing(1),
+        [theme.breakpoints.down("sm")]: {
+            marginTop: "-24%",
+        },
+    },
+    actionsContainer: {
+        marginBottom: theme.spacing(2),
+    },
+    resetContainer: {
+        padding: theme.spacing(3),
+    },
+    logo: {
+        fontFamily: "Marker Felt",
+        fontSize: "4rem",
+        color: "#3c3744",
+        [theme.breakpoints.down("sm")]: {
+            fontSize: "2.6rem",
+            marginTop: "-2%",
+        },
+    },
+    nav: {
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+    },
+    navBar: {
+        display: "flex",
+        justifyContent: "space-evenly",
+        alignItems: "center",
+        width: "100%",
+        height: "80px",
+        marginBottom: "1%",
+        [theme.breakpoints.down("sm")]: {
+            flexDirection: "column",
+        },
+    },
+}));
 
 function App() {
     const [tickets, setTickets] = useState([]);
     const [drivers, setDrivers] = useState([]);
+
+    const theme = useTheme();
+    const classes = useStyles();
+    const matches = useMediaQuery(theme.breakpoints.down("sm"));
+
     useEffect(() => {
         axiosWithAuth()
             .get("/tickets")
@@ -25,7 +81,6 @@ function App() {
                     }
                 });
                 setTickets(actives);
-                console.log(actives);
             });
     }, []);
     return (
@@ -33,39 +88,109 @@ function App() {
             <Router>
                 <InitialContext.Provider value={{ tickets, setTickets }}>
                     <div className="App">
-                        <div className="nav">
-                            <div className="nav-bar">
-                                <div className="nav-logo">
-                                    <span>Causeway Locator</span>
-                                </div>
-                                <Link to="/swap-form">
-                                    <button className="button">Swap</button>
-                                    {""}
-                                </Link>
-                                <Link to="/admin-login">
-                                    <button className="button">Admin</button>
-                                </Link>
-                                <Link to="/">
-                                    <button className="button">Home</button>
-                                </Link>
-                            </div>
-                        </div>
-                        <Route exact path="/">
-                            <LandingPage />
-                        </Route>
-                        <Route exact path="/swap-form">
-                            <SwapForm />
-                        </Route>
-                        <Route exact path="/admin-login">
-                            <AdminLogin />
-                        </Route>
-                        <Route exact path="/admin-tickets">
-                            <Tickets />
-                        </Route>
+                        <Container
+                            maxWidth="xl"
+                            style={{
+                                // backgroundColor: "#222629",
+                                background:
+                                    "linear-gradient(#3c3744,#b4c5e4, #fbfff1)",
+                                borderRadius: "6px",
+                                padding: "5%",
+                            }}
+                        >
+                            <Container
+                                maxWidth="md"
+                                style={{
+                                    borderRadius: "12px",
+                                    backgroundColor: "white",
+                                    boxShadow:
+                                        "12px 0px 35px 0px rgba(0, 0, 0, 0.5)",
+                                    padding: "4%",
+                                }}
+                            >
+                                <div className={classes.nav}>
+                                    <div className={classes.navBar}>
+                                        <div>
+                                            <p className={classes.logo}>
+                                                swapper
+                                            </p>
+                                        </div>
 
-                        <Route exact path="/success">
-                            <Success />
-                        </Route>
+                                        {matches ? (
+                                            <div>
+                                                <Button
+                                                    href="/"
+                                                    variant="contained"
+                                                    color="primary"
+                                                    className={classes.button}
+                                                    size="small"
+                                                >
+                                                    Swap
+                                                </Button>
+
+                                                <Button
+                                                    href="/admin-login"
+                                                    variant="contained"
+                                                    color="primary"
+                                                    className={classes.button}
+                                                    size="small"
+                                                >
+                                                    admin
+                                                </Button>
+
+                                                <Button
+                                                    href="/"
+                                                    variant="contained"
+                                                    color="primary"
+                                                    className={classes.button}
+                                                    size="small"
+                                                >
+                                                    Home
+                                                </Button>
+                                            </div>
+                                        ) : (
+                                            <div>
+                                                <Button
+                                                    href="/"
+                                                    variant="contained"
+                                                    color="primary"
+                                                    className={classes.button}
+                                                >
+                                                    Swap
+                                                </Button>
+
+                                                <Button
+                                                    href="/admin-login"
+                                                    variant="contained"
+                                                    color="primary"
+                                                    className={classes.button}
+                                                >
+                                                    admin
+                                                </Button>
+
+                                                <Button
+                                                    href="/"
+                                                    variant="contained"
+                                                    color="primary"
+                                                    className={classes.button}
+                                                >
+                                                    Home
+                                                </Button>
+                                            </div>
+                                        )}
+                                    </div>
+                                </div>
+                                <Route exact path="/">
+                                    <SwapForm />
+                                </Route>
+                                <Route exact path="/admin-login">
+                                    <AdminLogin />
+                                </Route>
+                            </Container>
+                            <Route exact path="/admin-tickets">
+                                <Tickets />
+                            </Route>
+                        </Container>
                     </div>
                 </InitialContext.Provider>
             </Router>

@@ -5,12 +5,24 @@ import axiosWithAuth from "../utils/axiosWithAuth";
 import { InitialContext } from "../context/InitialContext";
 import { Link } from "react-router-dom";
 
+import { makeStyles } from "@material-ui/styles";
+import Container from "@material-ui/core/Container";
+
+const useStyles = makeStyles((theme) => ({
+    ticketHolder: {
+        display: "flex",
+        flexWrap: "wrap",
+    },
+}));
+
 const Tickets = (props) => {
+    const classes = useStyles();
+
     const { tickets, setTickets } = useContext(InitialContext);
 
     return (
         <>
-            <h1 className="ticket-header">Locates</h1>
+            {/* <Container className={classes.ticketHolder}> */}
             <div className="ticket-holder">
                 {tickets.map((ticket) => (
                     <Ticket
@@ -30,17 +42,7 @@ const Tickets = (props) => {
                     />
                 ))}
             </div>
-
-            {/* <h1 className="ticket-header">Driver Requests</h1>
-            <div className="ticket-holder">
-                {drivers.map((driver) => (
-                    <Driver
-                        id={driver.id}
-                        salesperson={driver.salesperson}
-                        description={driver.description}
-                    ></Driver>
-                ))}
-            </div> */}
+            {/* </Container> */}
         </>
     );
 };

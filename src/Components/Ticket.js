@@ -3,6 +3,25 @@ import axiosWithAuth from "../utils/axiosWithAuth";
 import { useHistory, Link, useParams } from "react-router-dom";
 import { InitialContext } from "../context/InitialContext";
 
+import Button from "@material-ui/core/Button";
+import Container from "@material-ui/core/Container";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme) => ({
+    button: {
+        marginTop: theme.spacing(1),
+        marginLeft: theme.spacing(3),
+    },
+    mainTicket: {
+        position: "relative",
+        background: "#fff",
+        width: "300px",
+        margin: "30px auto",
+        boxShadow: "0px 2px 38px rgba(0, 0, 0, 0.2)",
+        padding: "3%",
+    },
+}));
+
 const Ticket = ({
     id,
     salesperson,
@@ -17,6 +36,7 @@ const Ticket = ({
     isActive,
     setTickets,
 }) => {
+    const classes = useStyles();
     const { push } = useHistory();
     const [ticket, setTicket] = useState();
 
@@ -53,7 +73,7 @@ const Ticket = ({
         <>
             <div className="ticket-container">
                 {backGroundGreen === false ? (
-                    <div className="main-ticket">
+                    <Container className={classes.mainTicket}>
                         <p>Salesperson:{salesperson}</p>
                         <p>Year: {year}</p>
                         <p>Model: {model}</p>
@@ -64,21 +84,25 @@ const Ticket = ({
                         <p>Options: {options}</p>
                         <p>Notes: {notes}</p>
 
-                        <button
-                            className="button"
+                        <Button
+                            variant="contained"
+                            className={classes.button}
+                            color="primary"
                             onClick={(e) => {
                                 handleArchive(e);
                             }}
                         >
                             Archive
-                        </button>
-                        <button
-                            className="button"
+                        </Button>
+                        <Button
+                            variant="contained"
+                            className={classes.button}
+                            color="primary"
                             onClick={handleBackGroundChange}
                         >
                             Locked In
-                        </button>
-                    </div>
+                        </Button>
+                    </Container>
                 ) : (
                     <div className="locked-ticket">
                         <p>Salesperson:{salesperson}</p>
@@ -91,20 +115,22 @@ const Ticket = ({
                         <p>Options: {options}</p>
                         <p>Notes: {notes}</p>
 
-                        <button
-                            className="button"
+                        <Button
+                            variant="contained"
+                            color="primary"
                             onClick={(e) => {
                                 setFormState({ isActive: false });
                             }}
                         >
                             Archive
-                        </button>
-                        <button
-                            className="button"
+                        </Button>
+                        <Button
+                            variant="contained"
+                            color="primary"
                             onClick={handleBackGroundChange}
                         >
                             Locked In
-                        </button>
+                        </Button>
                     </div>
                 )}
             </div>
