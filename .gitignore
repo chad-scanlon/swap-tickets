@@ -24,3 +24,5 @@ yarn-error.log*
 sendgrid.env
 
 /src/purgable
+# Local Netlify folder
+.netlify

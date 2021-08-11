@@ -87,7 +87,7 @@ function App() {
         <>
             <Router>
                 <InitialContext.Provider value={{ tickets, setTickets }}>
-                    <div className="App">
+                    <div>
                         <Container
                             maxWidth="xl"
                             style={{
@@ -112,7 +112,7 @@ function App() {
                                     <div className={classes.navBar}>
                                         <div>
                                             <p className={classes.logo}>
-                                                swapper
+                                                swap tickets
                                             </p>
                                         </div>
 
@@ -135,7 +135,7 @@ function App() {
                                                     className={classes.button}
                                                     size="small"
                                                 >
-                                                    admin
+                                                    Admin
                                                 </Button>
 
                                                 <Button
