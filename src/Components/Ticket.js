@@ -3,15 +3,21 @@ import axiosWithAuth from "../utils/axiosWithAuth";
 import { useHistory, Link, useParams } from "react-router-dom";
 import { InitialContext } from "../context/InitialContext";
 
+import Card from "@material-ui/core/Card";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
-    button: {
-        marginTop: theme.spacing(1),
-        marginLeft: theme.spacing(3),
+    buttons: {
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
     },
+
     mainTicket: {
         position: "relative",
         background: "#fff",
@@ -47,14 +53,11 @@ const Ticket = ({
     const handleBackGroundChange = () => {
         setBackGroundGreen(true);
     };
-
-    const handleArchive = (e) => {
+    const handleDelete = (e) => {
         axiosWithAuth()
-            .put(`/tickets/${id}`, formState)
+            .delete(`/tickets/${id}`)
             .then((res) => {
-                setFormState({
-                    isActive: false,
-                });
+                console.log(res);
             })
             .catch((err) => {
                 console.log(err.response);
@@ -69,71 +72,54 @@ const Ticket = ({
             });
     };
 
+    // const handleArchive = (e) => {
+    //     axiosWithAuth()
+    //         .put(`/tickets/${id}`, formState)
+    //         .then((res) => {
+    //             setFormState({
+    //                 isActive: false,
+    //             });
+    //         })
+    //         .catch((err) => {
+    //             console.log(err.response);
+    //         });
+    //     axiosWithAuth()
+    //         .get("/tickets")
+    //         .then((res) => {
+    //             setTickets(res.data);
+    //         })
+    //         .catch((err) => {
+    //             console.log(err.response);
+    //         });
+    // };
+
     return (
         <>
-            <div className="ticket-container">
-                {backGroundGreen === false ? (
-                    <Container className={classes.mainTicket}>
-                        <p>Salesperson:{salesperson}</p>
-                        <p>Year: {year}</p>
-                        <p>Model: {model}</p>
-                        <p>Body: {body}</p>
-                        <p>PEP: {pep}</p>
-                        <p>Exterior Color: {ext}</p>
-                        <p>Interior Color: {int}</p>
-                        <p>Options: {options}</p>
-                        <p>Notes: {notes}</p>
+            <Card className={classes.mainTicket}>
+                <CardContent>
+                    <Typography component="p">
+                        Salesperson:{salesperson}
+                    </Typography>
+                    <Typography component="p">Year: {year}</Typography>
+                    <Typography component="p">Model: {model}</Typography>
+                    <Typography component="p">Body: {body}</Typography>
+                    <Typography component="p">PEP: {pep}</Typography>
+                    <Typography component="p">Exterior Color: {ext}</Typography>
+                    <Typography component="p">Interior Color: {int}</Typography>
+                    <Typography component="p">Options: {options}</Typography>
+                    <Typography component="p">Notes: {notes}</Typography>
+                </CardContent>
 
-                        <Button
-                            variant="contained"
-                            className={classes.button}
-                            color="primary"
-                            onClick={(e) => {
-                                handleArchive(e);
-                            }}
-                        >
-                            Archive
-                        </Button>
-                        <Button
-                            variant="contained"
-                            className={classes.button}
-                            color="primary"
-                            onClick={handleBackGroundChange}
-                        >
-                            Locked In
-                        </Button>
-                    </Container>
-                ) : (
-                    <div className="locked-ticket">
-                        <p>Salesperson:{salesperson}</p>
-                        <p>Year: {year}</p>
-                        <p>Model: {model}</p>
-                        <p>Body: {body}</p>
-                        <p>PEP: {pep}</p>
-                        <p>Exterior Color: {ext}</p>
-                        <p>Interior Color: {int}</p>
-                        <p>Options: {options}</p>
-                        <p>Notes: {notes}</p>
-
-                        <Button
-                            variant="contained"
-                            color="primary"
-                            onClick={(e) => {
-                                setFormState({ isActive: false });
-                            }}
-                        >
-                            Archive
-                        </Button>
-                        <Button
-                            variant="contained"
-                            color="primary"
-                            onClick={handleBackGroundChange}
-                        >
-                            Locked In
-                        </Button>
-                    </div>
-                )}
-            </div>
+                <CardActions className={classes.buttons}>
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        onClick={handleDelete}
+                    >
+                        Delete
+                    </Button>
+                </CardActions>
+            </Card>
         </>
     );
 };

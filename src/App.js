@@ -74,13 +74,12 @@ function App() {
         axiosWithAuth()
             .get("/tickets")
             .then((response) => {
-                let actives = [];
-                response.data.forEach((res) => {
-                    if (res.isActive === true) {
-                        actives.push(res);
-                    }
-                });
-                setTickets(actives);
+                console.log(response);
+
+                setTickets(response.data);
+            })
+            .catch((err) => {
+                console.log(err.response);
             });
     }, []);
     return (
@@ -91,10 +90,9 @@ function App() {
                         <Container
                             maxWidth="xl"
                             style={{
-                                // backgroundColor: "#222629",
                                 background:
                                     "linear-gradient(#3c3744,#b4c5e4, #fbfff1)",
-                                borderRadius: "6px",
+
                                 padding: "5%",
                             }}
                         >
@@ -186,10 +184,10 @@ function App() {
                                 <Route exact path="/admin-login">
                                     <AdminLogin />
                                 </Route>
+                                <Route exact path="/admin-tickets">
+                                    <Tickets />
+                                </Route>
                             </Container>
-                            <Route exact path="/admin-tickets">
-                                <Tickets />
-                            </Route>
                         </Container>
                     </div>
                 </InitialContext.Provider>

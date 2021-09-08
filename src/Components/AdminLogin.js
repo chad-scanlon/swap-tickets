@@ -35,14 +35,12 @@ const useStyles = makeStyles((theme) => ({
         marginBottom: "6%",
         boxShadow: "12px 0px 35px 0px rgba(0, 0, 0, 0.5)",
         background: "linear-gradient(#222629,#474B4F, #6B6E70)",
-        // background: "linear-gradient(#fbfff1, #b4c5e4,#3c3744)",
     },
 }));
 
 const AdminLogin = () => {
     const theme = useTheme();
     const classes = useStyles();
-    // const matches = useMediaQuery(theme.breakpoints.down("sm"));
 
     const [cred, setCred] = useState({
         username: "",
@@ -57,6 +55,7 @@ const AdminLogin = () => {
         axiosWithAuth()
             .post("/users/login", cred)
             .then((res) => {
+                console.log(res);
                 localStorage.setItem("token", res.data.payload);
                 push("/admin-tickets");
             })

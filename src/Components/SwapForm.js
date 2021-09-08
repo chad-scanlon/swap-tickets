@@ -20,6 +20,7 @@ import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import Container from "@material-ui/core/Container";
 import StepIcon from "@material-ui/core/StepIcon";
+import { Alert, AlertTitle } from "@material-ui/lab";
 
 const useStyles = makeStyles((theme) => ({
     button: {
@@ -96,6 +97,7 @@ const SwapForm = () => {
     const classes = useStyles();
     const matches = useMediaQuery(theme.breakpoints.down("sm"));
 
+    const [success, setSuccess] = useState(false);
     const [activeStep, setActiveStep] = useState(0);
     const steps = getSteps();
 
@@ -199,10 +201,11 @@ const SwapForm = () => {
                     notes: "",
                     isActive: "",
                 });
-                push("/success");
+                setSuccess(true);
             })
             .catch((err) => {
                 console.log(err.response);
+                console.log("this is the post error");
             });
     };
 
@@ -399,10 +402,22 @@ const SwapForm = () => {
                         color="primary"
                         className={classes.button}
                         disabled={buttonDisabled}
+                        onClick={handleLocateSubmit}
                     >
                         Submit
                     </Button>
                 </form>
+                {success ? (
+                    <Alert
+                        onClose={() => {
+                            setSuccess(false);
+                        }}
+                        severity="success"
+                    >
+                        <AlertTitle>Success</AlertTitle>
+                        <strong>Swap request submitted</strong>
+                    </Alert>
+                ) : null}
             </Container>
         </>
     );

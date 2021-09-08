@@ -9,9 +9,13 @@ import { makeStyles } from "@material-ui/styles";
 import Container from "@material-ui/core/Container";
 
 const useStyles = makeStyles((theme) => ({
-    ticketHolder: {
+    ticketsHolder: {
         display: "flex",
         flexWrap: "wrap",
+        // justifyContent: "center",
+
+        color: "#282c34",
+        // border: "solid black 2px",
     },
 }));
 
@@ -19,11 +23,15 @@ const Tickets = (props) => {
     const classes = useStyles();
 
     const { tickets, setTickets } = useContext(InitialContext);
-
+    console.log(tickets);
+    tickets.forEach((element) => {
+        element.isActive
+            ? console.log(element.salesperson)
+            : console.log(element.isActive);
+    });
     return (
         <>
-            {/* <Container className={classes.ticketHolder}> */}
-            <div className="ticket-holder">
+            <Container className={classes.ticketsHolder}>
                 {tickets.map((ticket) => (
                     <Ticket
                         key={ticket.id}
@@ -41,8 +49,7 @@ const Tickets = (props) => {
                         setTickets={setTickets}
                     />
                 ))}
-            </div>
-            {/* </Container> */}
+            </Container>
         </>
     );
 };
