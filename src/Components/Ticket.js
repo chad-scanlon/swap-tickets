@@ -98,7 +98,7 @@ const Ticket = ({
             <Card className={classes.mainTicket}>
                 <CardContent>
                     <Typography component="p">
-                        Salesperson:{salesperson}
+                        Salesperson: {salesperson}
                     </Typography>
                     <Typography component="p">Year: {year}</Typography>
                     <Typography component="p">Model: {model}</Typography>
